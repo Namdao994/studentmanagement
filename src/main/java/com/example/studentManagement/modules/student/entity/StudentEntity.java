@@ -50,7 +50,7 @@ public class StudentEntity {
   private UserEntity userEntity;
 
   @ManyToOne
-  @JoinColumn(name = "class_id", nullable = false)
+  @JoinColumn(name = "class_id")
   private ClassEntity clazzEntity;
 
   @OneToMany(mappedBy = "studentEntity", cascade = CascadeType.ALL)

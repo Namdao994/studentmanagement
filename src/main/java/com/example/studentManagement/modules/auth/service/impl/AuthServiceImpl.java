@@ -1,9 +1,11 @@
 package com.example.studentManagement.modules.auth.service.impl;
 
 import java.util.Set;
+import java.util.UUID;
 
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.example.studentManagement.common.constant.CodePrefix;
 import com.example.studentManagement.common.exception.BusinessException;
@@ -26,6 +28,7 @@ import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
+@Transactional(rollbackFor = Exception.class)
 public class AuthServiceImpl implements AuthService {
 
     private final UserRepository userRepository;
@@ -57,8 +60,7 @@ public class AuthServiceImpl implements AuthService {
         if (role.getName() == RoleType.STUDENT) {
             StudentEntity studentEntity = new StudentEntity();
             studentEntity.setUserEntity(userEntity);
-            studentRepository.save(studentEntity);
-            String code = CodePrefix.STUDENT.getPrefix() + String.format("%06d", studentEntity.getId());
+            String code = CodePrefix.STUDENT.getPrefix() + UUID.randomUUID().toString().substring(0, 8);
             studentEntity.setStudentCode(code);
             studentRepository.save(studentEntity);
         }
@@ -66,8 +68,7 @@ public class AuthServiceImpl implements AuthService {
         if (role.getName() == RoleType.TEACHER) {
             TeacherEntity teacherEntity = new TeacherEntity();
             teacherEntity.setUserEntity(userEntity);
-            teacherRepository.save(teacherEntity);
-            String code = CodePrefix.TEACHER.getPrefix() + String.format("%06d", teacherEntity.getId());
+            String code = CodePrefix.TEACHER.getPrefix() + UUID.randomUUID().toString().substring(0, 8);
             teacherEntity.setTeacherCode(code);
             teacherRepository.save(teacherEntity);
         }
