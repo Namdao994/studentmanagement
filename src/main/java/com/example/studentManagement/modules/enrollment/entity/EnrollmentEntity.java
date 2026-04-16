@@ -2,7 +2,6 @@ package com.example.studentManagement.modules.enrollment.entity;
 
 import java.math.BigDecimal;
 
-
 import com.example.studentManagement.modules.enrollment.enums.SemesterType;
 import com.example.studentManagement.modules.student.entity.StudentEntity;
 import com.example.studentManagement.modules.subject.entity.SubjectEntity;
@@ -38,7 +37,7 @@ public class EnrollmentEntity {
 
   @Column(name = "semester", nullable = false)
   @Enumerated(EnumType.STRING)
-  private SemesterType semester;
+  private SemesterType semester = SemesterType.SEMESTER_1;
 
   @Min(2000)
   @Max(2100)
