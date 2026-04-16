@@ -20,6 +20,11 @@ CREATE TABLE users (
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
     username VARCHAR(50) NOT NULL UNIQUE,
     password VARCHAR(50) NOT NULL
+    full_name VARCHAR(100) NOT NULL,
+    gender VARCHAR(20) NOT NULL DEFAULT 'MALE',
+    date_of_birth DATE NOT NULL,
+
+    CONSTRAINT chk_gender CHECK (gender IN ("MALE", "FEMALE"))
 );
 
 CREATE TABLE roles (
@@ -40,16 +45,39 @@ CREATE TABLE users_roles (
 CREATE TABLE students (
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
     student_code VARCHAR(20) NOT NULL UNIQUE,
-    full_name VARCHAR(100) NOT NULL,
-    gender VARCHAR(20) NOT NULL DEFAULT 'MALE',
-    date_of_birth DATE NOT NULL,
     status VARCHAR(20) NOT NULL DEFAULT 'STUDYING',
     class_id BIGINT NOT NULL,
     user_id BIGINT NOT NULL UNIQUE,
+
     CONSTRAINT fk_student_class FOREIGN KEY (class_id) REFERENCES classes(id) ON DELETE CASCADE,
     CONSTRAINT fk_student_user FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
-    CONSTRAINT chk_gender CHECK (gender IN ("MALE", "FEMALE")),
     CONSTRAINT chk_status CHECK (status IN ("STUDYING", "GRADUATED", "DROPPED"))
+);
+
+CREATE TABLE departments (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    department_code VARCHAR(20) NOT NULL UNIQUE,
+    department_name VARCHAR(100) NOT NULL
+);
+
+CREATE TABLE teachers (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    teacher_code VARCHAR(20) NOT NULL UNIQUE,
+    title VARCHAR(50),
+
+    department_id BIGINT NOT NULL,
+    user_id BIGINT NOT NULL UNIQUE,
+    class_id BIGINT NOT NULL UNIQUE,
+
+    CONSTRAINT fk_teacher_department
+        FOREIGN KEY (department_id) REFERENCES departments(id),
+
+    CONSTRAINT fk_teacher_user
+        FOREIGN KEY (user_id) REFERENCES users(id)
+
+    CONSTRAINT fk_teacher_class FOREIGN KEY (class_id) REFERRENCE classes(id)
+
+    CONSTRAINT chk_title CHECK (title IN ('LECTURER', 'SENIOR_LECTURER', 'ASSISTANT_LECTURER', 'HEAD_OF_DEPARTMENT'))
 );
 
 CREATE TABLE enrollments (

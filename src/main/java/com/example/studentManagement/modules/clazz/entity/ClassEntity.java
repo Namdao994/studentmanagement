@@ -1,8 +1,9 @@
-package com.example.studentManagement.modules.classes.entity;
+package com.example.studentManagement.modules.clazz.entity;
 
 import java.util.List;
 
 import com.example.studentManagement.modules.student.entity.StudentEntity;
+import com.example.studentManagement.modules.teacher.entity.TeacherEntity;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -11,6 +12,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -41,4 +43,8 @@ public class ClassEntity {
 
   @OneToMany(mappedBy = "clazzEntity", cascade = CascadeType.ALL)
   private List<StudentEntity> studentEntities;
+
+  @OneToOne(mappedBy = "clazzEntity")
+  private TeacherEntity teacherEntity;
+
 }

@@ -1,13 +1,11 @@
 package com.example.studentManagement.modules.student.entity;
 
-import java.time.LocalDate;
 import java.util.List;
 
 import com.example.studentManagement.modules.attendance_log.entity.AttendanceLogEntity;
 import com.example.studentManagement.modules.auth.entity.UserEntity;
-import com.example.studentManagement.modules.classes.entity.ClassEntity;
+import com.example.studentManagement.modules.clazz.entity.ClassEntity;
 import com.example.studentManagement.modules.enrollment.entity.EnrollmentEntity;
-import com.example.studentManagement.modules.student.enums.GenderType;
 import com.example.studentManagement.modules.student.enums.StatusType;
 
 import jakarta.persistence.CascadeType;
@@ -42,16 +40,6 @@ public class StudentEntity {
 
   @Column(name = "student_code", length = 20, nullable = false, unique = true)
   private String studentCode;
-
-  @Column(name = "full_name", length = 100, nullable = false)
-  private String fullName;
-
-  @Column(name = "gender", nullable = false)
-  @Enumerated(EnumType.STRING)
-  private GenderType gender = GenderType.MALE;
-
-  @Column(name = "date_of_birth", nullable = false)
-  private LocalDate dateOfBirth;
 
   @Column(name = "status", nullable = false)
   @Enumerated(EnumType.STRING)

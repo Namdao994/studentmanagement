@@ -6,4 +6,9 @@ public enum ErrorCode {
     INTERNAL_ERROR,
     BAD_REQUEST,
     ALREADY_EXISTS,
+
+    //Role
+    ROLE_ASSIGN_NOT_ALLOWED,
+    ROLE_NOT_FOUND,
+    ROLE_INVALID
 }
