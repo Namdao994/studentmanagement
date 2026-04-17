@@ -2,8 +2,11 @@ package com.example.studentManagement.util;
 
 import java.nio.charset.StandardCharsets;
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.stereotype.Component;
+
+import com.example.studentManagement.modules.role.enums.RoleType;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
@@ -15,12 +18,10 @@ public class JwtUtil {
     private final String SECRET = "demo-secret-key-123456-demo-secret-key-123456";
     public static final long MILLISECONDS_PER_DAY = 86_400_000L; 
 
-    public String generateAccessToken(String username, String role) {
-
-
+    public String generateAccessToken(String username, List<RoleType> roles) {
         return Jwts.builder()
         .setSubject(username)
-        .claim("role", role)
+        .claim("roles", roles)
         .setIssuedAt(new Date())
         .setExpiration(new Date(System.currentTimeMillis() + MILLISECONDS_PER_DAY))
         .signWith(Keys.hmacShaKeyFor(SECRET.getBytes(StandardCharsets.UTF_8)),
@@ -28,8 +29,8 @@ public class JwtUtil {
         .compact();
     }
 
-    public String generateRefreshToken(String username, String role) {
-        return Jwts.builder().setSubject(username).claim("role", role)
+    public String generateRefreshToken(String username, List<RoleType> roles) {
+        return Jwts.builder().setSubject(username).claim("roles", roles)
                     .setIssuedAt(new Date())
                     .setExpiration(new Date(System.currentTimeMillis() + MILLISECONDS_PER_DAY * 7))
                     .signWith(Keys.hmacShaKeyFor(SECRET.getBytes(StandardCharsets.UTF_8)),

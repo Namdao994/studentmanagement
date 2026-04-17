@@ -1,0 +1,16 @@
+package com.example.studentManagement.modules.department.dto.response;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+
+@Getter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+public class DepartmentSummary {
+    private Long id;
+    private String departmentCode;
+    private String departmentName;
+}

@@ -1,4 +1,4 @@
-package com.example.studentManagement.modules.auth.dto;
+package com.example.studentManagement.modules.auth.dto.request;
 
 import java.time.LocalDate;
 

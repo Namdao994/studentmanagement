@@ -46,7 +46,7 @@ CREATE TABLE students (
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
     student_code VARCHAR(20) NOT NULL UNIQUE,
     status VARCHAR(20) NOT NULL DEFAULT 'STUDYING',
-    class_id BIGINT NOT NULL,
+    class_id BIGINT,
     user_id BIGINT NOT NULL UNIQUE,
 
     CONSTRAINT fk_student_class FOREIGN KEY (class_id) REFERENCES classes(id) ON DELETE CASCADE,
@@ -65,9 +65,9 @@ CREATE TABLE teachers (
     teacher_code VARCHAR(20) NOT NULL UNIQUE,
     title VARCHAR(50),
 
-    department_id BIGINT NOT NULL,
+    department_id BIGINT,
     user_id BIGINT NOT NULL UNIQUE,
-    class_id BIGINT NOT NULL UNIQUE,
+    class_id BIGINT UNIQUE,
 
     CONSTRAINT fk_teacher_department
         FOREIGN KEY (department_id) REFERENCES departments(id),

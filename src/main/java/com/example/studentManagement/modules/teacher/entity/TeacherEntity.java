@@ -7,6 +7,8 @@ import com.example.studentManagement.modules.teacher.enums.TitleType;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -34,15 +36,16 @@ public class TeacherEntity {
     @Column(name = "teacher_code", nullable = false, unique = true, length = 20)
     private String teacherCode;
 
-    @Column(name = "title", nullable = false, unique = true)
-    private TitleType title;
+    @Column(name = "title", nullable = false)
+    @Enumerated(EnumType.STRING)
+    private TitleType title = TitleType.ASSISTANT_LECTURER;
 
     @OneToOne
     @JoinColumn(name = "user_id", referencedColumnName = "id", unique = true)
     private UserEntity userEntity;
 
     @ManyToOne
-    @JoinColumn(name = "department_id", nullable = false)
+    @JoinColumn(name = "department_id")
     private DepartmentEntity departmentEntity;
 
     @OneToOne

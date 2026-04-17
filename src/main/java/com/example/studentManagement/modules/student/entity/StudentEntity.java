@@ -43,7 +43,7 @@ public class StudentEntity {
 
   @Column(name = "status", nullable = false)
   @Enumerated(EnumType.STRING)
-  private StatusType status = StatusType.STUDYING;
+  private StatusType status = StatusType.PENDING;
 
   @OneToOne
   @JoinColumn(name = "user_id", nullable = false, referencedColumnName = "id", unique = true)

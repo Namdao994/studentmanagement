@@ -53,7 +53,7 @@ public class UserEntity {
   private LocalDate dateOfBirth;
 
   @Column(name = "is_active", nullable = false)
-  private boolean isActive = false;
+  private Boolean isActive = false;
 
   @OneToOne(mappedBy = "userEntity")
   private StudentEntity studentEntity;

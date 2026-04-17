@@ -19,7 +19,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-
 @Setter
 @Getter
 @NoArgsConstructor
@@ -27,7 +26,7 @@ import lombok.Setter;
 @Entity
 @Table(name = "classes")
 public class ClassEntity {
-  
+
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
@@ -37,9 +36,6 @@ public class ClassEntity {
 
   @Column(name = "class_name", nullable = false, length = 100)
   private String className;
-
-  @Column(name = "department", nullable = false, length = 100)
-  private String department;
 
   @OneToMany(mappedBy = "clazzEntity", cascade = CascadeType.ALL)
   private List<StudentEntity> studentEntities;
