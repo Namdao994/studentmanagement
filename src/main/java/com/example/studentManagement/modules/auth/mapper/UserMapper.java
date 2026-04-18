@@ -50,8 +50,6 @@ public interface UserMapper {
     // phụ trợ
     DepartmentSummary toDepartmentSummary(DepartmentEntity departmentEntity);
     ClassSummary toClassSummary(ClassEntity classEntity);
-
-
     default RoleType toRoleType(RoleEntity role) {
         return role.getName();
     }
