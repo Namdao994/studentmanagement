@@ -16,7 +16,6 @@ import com.example.studentManagement.modules.auth.dto.request.AuthRegisterReques
 import com.example.studentManagement.modules.auth.dto.response.AuthLoginResponse;
 import com.example.studentManagement.modules.auth.dto.response.AuthRegisterResponse;
 import com.example.studentManagement.modules.auth.entity.UserEntity;
-import com.example.studentManagement.modules.auth.mapper.UserMapper;
 import com.example.studentManagement.modules.auth.repository.UserRepository;
 import com.example.studentManagement.modules.auth.service.AuthService;
 import com.example.studentManagement.modules.auth.service.login.LoginStrategy;
@@ -34,7 +33,6 @@ public class AuthServiceImpl implements AuthService {
     private final PasswordEncoder passwordEncoder;
     private final RoleRepository roleRepository;
     private final JwtUtil jwtUtil;
-
     private final Map<RoleType, RegisterStrategy> registerStrategyMap;
     private final Map<RoleType, LoginStrategy> loginStrategyMap;
 
@@ -48,7 +46,6 @@ public class AuthServiceImpl implements AuthService {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
         this.roleRepository = roleRepository;
-
         this.jwtUtil = jwtUtil;
         this.registerStrategyMap = registerStrategies.stream()
                 .collect(Collectors.toMap(RegisterStrategy::getRole, s -> s));

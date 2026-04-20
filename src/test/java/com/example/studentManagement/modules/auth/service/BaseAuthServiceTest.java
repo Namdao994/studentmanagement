@@ -17,13 +17,20 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @ExtendWith(MockitoExtension.class)
 public abstract class BaseAuthServiceTest {
 
-  @Mock protected UserRepository userRepository;
-  @Mock protected PasswordEncoder passwordEncoder;
-  @Mock protected RoleRepository roleRepository;
-  @Mock protected StudentRepository studentRepository;
-  @Mock protected TeacherRepository teacherRepository;
-  @Mock protected UserMapper userMapper;
-  @Mock protected JwtUtil jwtUtil;
+  @Mock
+  protected UserRepository userRepository;
+  @Mock
+  protected PasswordEncoder passwordEncoder;
+  @Mock
+  protected RoleRepository roleRepository;
+  @Mock
+  protected StudentRepository studentRepository;
+  @Mock
+  protected TeacherRepository teacherRepository;
+  @Mock
+  protected UserMapper userMapper;
+  @Mock
+  protected JwtUtil jwtUtil;
 
   @InjectMocks
   protected AuthServiceImpl authService;
