@@ -13,11 +13,6 @@ public class AuthServiceTest extends BaseAuthServiceTest {
 
   @Test
   public void register_shouldSaveUser_whenValidRequest() {
-    // given
-    UserEntity userEntity = UserEntityTestFactory.builder().build();
-    RoleEntity roleEntity = RoleEntityTestFactory.builder().build();
-    Set<RoleEntity> roleEntities = Set.of(roleEntity);
 
-    // when
   }
 }
