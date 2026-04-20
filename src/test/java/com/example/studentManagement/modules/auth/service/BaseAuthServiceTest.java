@@ -13,6 +13,11 @@ import com.example.studentManagement.modules.teacher.repository.TeacherRepositor
 import com.example.studentManagement.modules.auth.mapper.UserMapper;
 import com.example.studentManagement.util.JwtUtil;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import java.util.ArrayList;
+import java.util.List;
+import org.junit.jupiter.api.BeforeEach;
+import com.example.studentManagement.modules.auth.service.register.RegisterStrategy;
+import com.example.studentManagement.modules.auth.service.login.LoginStrategy;
 
 @ExtendWith(MockitoExtension.class)
 public abstract class BaseAuthServiceTest {
@@ -32,7 +37,20 @@ public abstract class BaseAuthServiceTest {
   @Mock
   protected JwtUtil jwtUtil;
 
-  @InjectMocks
+  protected List<RegisterStrategy> registerStrategies = new ArrayList<>();
+  protected List<LoginStrategy> loginStrategies = new ArrayList<>();
+
   protected AuthServiceImpl authService;
 
+  @BeforeEach
+  void setUp() {
+    authService = new AuthServiceImpl(
+        userRepository,
+        passwordEncoder,
+        roleRepository,
+        jwtUtil,
+        registerStrategies,
+        loginStrategies
+    );
+  }
 }
